@@ -51,5 +51,37 @@ public class ArraySelfPractice {
         for(int k = 0; k < stArray.length; k++) {
             System.out.println("Elements at index for string is: " + stArray[k]);
         }
+        
+        //MULTI-DIMENSIONAL Arrays
+        int multiArray[] [] = new int[6] [5];
+        
+        multiArray[0] [0] = 10; multiArray[1] [0] = 20;
+        multiArray[0] [1] = 12; multiArray[1] [1] = 45;
+        multiArray[0] [2] = 43; multiArray[1] [2] = 56;
+        multiArray[0] [3] = 11; multiArray[1] [3] = 1;
+        multiArray[0] [4] = 22; multiArray[1] [4] = 33;
+        
+        multiArray[2] [0] = 30; multiArray[3] [0] = 40;
+        multiArray[2] [1] = 67; multiArray[3] [1] = 12;
+        multiArray[2] [2] = 32; multiArray[3] [2] = 87;
+        multiArray[2] [3] = 14; multiArray[3] [3] = 14;
+        multiArray[2] [4] = 44; multiArray[3] [4] = 55;
+        
+        multiArray[4] [0] = 50; multiArray[5] [0] = 60;
+        multiArray[4] [1] = 86; multiArray[5] [1] = 56;
+        multiArray[4] [2] = 66; multiArray[5] [2] = 44;
+        multiArray[4] [3] = 13; multiArray[5] [3] = 12;
+        multiArray[4] [4] = 66; multiArray[5] [4] = 11;
+        
+        int rows = 6;
+        int coloumns = 5;
+        int p, k;
+        
+        for(p = 0; p < rows; p++) {
+            for(k = 0; k < coloumns; k++) {
+                System.out.println(multiArray[p] [k] + " ");
+            }
+            System.out.println("");
+        }
     }
 }
