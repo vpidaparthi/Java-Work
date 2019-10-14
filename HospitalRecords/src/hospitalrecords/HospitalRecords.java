@@ -93,6 +93,8 @@ public class HospitalRecords {
                         } else {
                             System.out.println("You didn't want to remove the record");
                         }
+                    } else {
+                        foundPatId = false;
                     }
                 }
             } else {
@@ -101,7 +103,7 @@ public class HospitalRecords {
                 break;
             }          
    
-            if(foundPatId==false){
+            if(foundPatId == false){
                 System.out.println("The search found no matching patient");
             }
             else if ("E".equals(outcome)) {
