@@ -1,120 +1,78 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ticketingsystem;
 
-
-import java.util.Queue;
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ *
+ * @author Peter Seatter
+ * @date 15/10/19
+ * @version 1
+ * @description creating a counted that will say who is customer 1 and so on then it will call them and store the rest which are generated
+ * at 3 second intervals and then continues going until it reaches the limit specified on the for loop counter
+ */
 
 public class TicketingSystem {
-    
-    public static Queue<String> cutomerNumber = new LinkedList();
-    public static String customerArrival;
-    public int queueNumber = 0;
-    
-    
+
+    //creates a public but static queue which stores, displays and outputs the numbers for the queue
+    public static Queue<String> customerNumber = new LinkedList();
+
+    //the main method of the application
     public static void main(String[] args) {
-     
         addCustomers();
+        //i is a variable it displays the placemaker so null is not displayed as a counter 
+        customerNumber.add("1");
         Timer timer = new Timer();
-        Timer ticketing = new Timer();
-        timer.schedule(new SalesAssisstantTask(), 0, 5000); //run code in the SalesAssistantTask run() method every 3 seconds
-        ticketing.schedule(new SalesAssisstantTask(), 0, 3000); 
-    }
-    
-    
-    public static void addCustomers(){
-        for (int i = 1; i < 100; i++){
-            cutomerNumber.add("Customer " + i);
-        }
-    }
-    
-    public static class SalesAssisstantTask extends TimerTask { //inner class
         
+        //The timer which is located in CustomerArrivalTask and it counts ever 5 seconds.
+        timer.schedule(new CustomerArrivalTask(), 0, 5000); 
+        //it creates an output for one gernation of customer which starts at one
+        for (int i = 1; i < 50; i++) {
+            customerNumber.add("" + i);
+        }
+        //it creates an output for generation of customer which starts at two
+        for (int i = 2; i < 50; i++) {
+            customerNumber.add("" + i); 
+        }
+    }
+
+    //a method which has a timer that adds a customer ever three seconds
+    public static void addCustomers() {
+        Timer timer = new Timer();
+        timer.schedule(new SalesAssisstantTask(), 0, 3000);   
+    }
+
+    //inner class to describe the task of seing the next customer in a queue
+    public static class CustomerArrivalTask extends TimerTask {
+
+        //the inner class which deals with the next customer
         public void run() {
-                
-            System.out.println("Sales Assistant is ready to see the next customer."); 
-            
-//            System.out.println("Customer with ticket 1 is added to the queue");
-            
-            /*the rest of code to display the next customer in line, what number
-            ticket is 
-            next in line and list all customers in a queue */
-            
-            if (cutomerNumber.isEmpty()){
+            //it states the if the customer number is empty then it will that they are ready to see the next customer and no customers to see
+            if (customerNumber.isEmpty()) {
+                System.out.println("Sales Assistant is ready to see the next customer..");
                 System.out.println("There are no customers to see.\n");
-                System.exit(0);
-            }
-            else if (cutomerNumber.size() == 1){
-                System.out.println("The customer with ticket number " + cutomerNumber.poll() + " will be seen");
-                System.out.println("There are no more customers to see.\n");
-            }
-            else{
-                System.out.println("The customer with ticket number " + cutomerNumber.poll() + " will be seen");
-                System.out.println("The customers with the following tickets are in the queue: " + cutomerNumber.toString() + "\n");
+            //this executes when it has customers in the queue and it will remove old values along with outputting which customer will be seen and who's in the queue
+            } else {
+                System.out.println("Sales Assistant is ready to see the next customer..");
+                System.out.println("The customer with ticket number " + customerNumber.poll() + " will be seen");
+                //removes the number from the top of the queue which has just been called
+                customerNumber.remove(customerNumber.poll());
+                //output for customers in queue
+                System.out.println("The customers with the following tickets are in the queue: " + customerNumber.toString() + "\n");
             }
         }
     }
-   
-    
+
+    //inner class to describe the task of displaying when the customer has been added to the queue and where they sit in the queue  
+    public static class SalesAssisstantTask extends TimerTask {
+        //the inner class which deals with the customer being added to the queue
+        public void run() {
+            //displaying the correct string
+            customerNumber.add(customerNumber.element());
+            //displays the customer with the ticket number and notifies they've been added to the queue
+            System.out.println("Customer with ticket " + customerNumber.poll() + " is added to the queue.\n");
+        }
+    }
 }
-//
-///*
-// * To change this license header, choose License Headers in Project Properties.
-// * To change this template file, choose Tools | Templates
-// * and open the template in the editor.
-// */
-//package icecreamqueue;
-//
-//import java.util.LinkedList;
-//import java.util.Queue;
-//import java.util.Scanner;
-//import java.util.Timer;
-//import java.util.TimerTask;
-//
-///**
-// *
-// * @author CPP_Curriculum
-// */
-//public class IceCreamQueue {
-//
-//    public static void main(String[] args) {
-//        addCustomers();
-//        Timer timer = new Timer();
-//        //timed event - first customer in line to be seen, if there are any customers
-//        timer.schedule(new IceCreamServingTask(), 0, 4000);
-//    }
-//    
-//    public static void addCustomers(){
-//        for (int i=1; i<5; i++){
-//            customerQueue.add("Customer " + i);
-//        }
-//    }
-//    
-//    //inner class to describe the task of serving ice cream to the first customer in a queue
-//    public static class IceCreamServingTask extends TimerTask{
-//        
-//        public void run() {
-//              
-//            System.out.println("Sales Assistant is ready to serve the next customer."); 
-//            if (customerQueue.isEmpty()){
-//                System.out.println("There are no customers to see.\n");
-//                System.exit(0);
-//            }
-//            else if (customerQueue.size() == 1){
-//                System.out.println("The customer with ticket number " + customerQueue.poll() + " is getting ice cream");
-//                System.out.println("There are no more customers to see.\n");
-//            }
-//            else{
-//                System.out.println("The customer with ticket number " + customerQueue.poll() + " is getting ice cream");
-//                System.out.println("The customers with the following tickets are in the queue: " + customerQueue.toString() + "\n");
-//            }       
-//        }
-//    }
-//}
