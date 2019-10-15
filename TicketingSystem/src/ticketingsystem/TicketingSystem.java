@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package ticketingsystem;
 
 import java.util.LinkedList;
@@ -41,7 +46,7 @@ public class TicketingSystem {
     //a method which has a timer that adds a customer ever three seconds
     public static void addCustomers() {
         Timer timer = new Timer();
-        timer.schedule(new SalesAssisstantTask(), 0, 3000);   
+        timer.schedule(new NumberAllocation(), 0, 3000);   
     }
 
     //inner class to describe the task of seing the next customer in a queue
@@ -66,7 +71,7 @@ public class TicketingSystem {
     }
 
     //inner class to describe the task of displaying when the customer has been added to the queue and where they sit in the queue  
-    public static class SalesAssisstantTask extends TimerTask {
+    public static class NumberAllocation extends TimerTask {
         //the inner class which deals with the customer being added to the queue
         public void run() {
             //displaying the correct string
