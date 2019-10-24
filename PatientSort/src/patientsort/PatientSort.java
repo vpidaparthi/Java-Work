@@ -7,37 +7,58 @@ package patientsort;
 
 /**
  *
- * @author 92060001
+ * @author Peter Seatter
  */
 public class PatientSort {
 
     /**
      * @param args the command line arguments
      */
-    public void doOptimisedBubbleSort(Patient[] arr) {
-      int n = arr.length-1;
-      for(int i=1; i< n-1; i++) {
+    public void daysSpentInHospital(Patient[] arr) {
+      int lastSwap = arr.length-1;
+      for(int i=1; i<arr.length; i++) {
         boolean is_sorted = true;
         int currentSwap = -1;
 
-        for(int j=0; j < n-i-1; j++) {
-          //only sort by days where the department names are equal
-          if(/*arr[j].getName().compareTo(arr[j + 1].getName()) == 0 &&*/ arr[j].getDaysSpentInHospital() <= arr[j + 1].getDaysSpentInHospital()) {
-            
-            //swap temp and arr[i]
-            Patient temp = arr[i];
-            arr[j] = arr[j + 1];
-            arr[j + 1] = temp;
-            is_sorted = false;
-            currentSwap = j;
+        for(int j=0; j < lastSwap; j++) {
+          if(arr[j + 1].getDaysSpentInHospital() < arr[j].getDaysSpentInHospital()) {
+             Patient temp = arr[j];
+             arr[j] = arr[j+1];
+             arr[j+1] = temp;
+             is_sorted = false;
+             currentSwap = j;
+             
           }
         }
 
         if(is_sorted) return;
-        n = currentSwap;
+        lastSwap = currentSwap;
+      }
+    }
+    
+    public void paitentName(Patient[] arr) {
+      int lastSwap = arr.length-1;
+      for(int i=1; i<arr.length; i++) {
+        boolean is_sorted = true;
+        int currentSwap = -1;
+
+        for(int j=0; j < lastSwap; j++) {
+          if(arr[j + 1].getDepartmentName() < arr[j].getDepartmentName()) {
+             Patient temp = arr[j];
+             arr[j] = arr[j+1];
+             arr[j+1] = temp;
+             is_sorted = false;
+             currentSwap = j;
+             
+          }
+        }
+
+        if(is_sorted) return;
+        lastSwap = currentSwap;
       }
     }
  
+    
     /* Prints the array */
     void printArray(Patient[] arr) {
         int n = arr.length;
@@ -65,7 +86,7 @@ public class PatientSort {
         ob.printArray(arr);
         
          //apply sort
-        ob.doOptimisedBubbleSort(arr);
+        ob.daysSpentInHospital(arr);
         System.out.println("The Optimised Bubble Sorted array is" );
         ob.printArray(arr);
     }
