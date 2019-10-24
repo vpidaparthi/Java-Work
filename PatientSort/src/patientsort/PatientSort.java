@@ -14,7 +14,7 @@ public class PatientSort {
     /**
      * @param args the command line arguments
      */
-    public void daysSpentInHospital(Patient[] arr) {
+    public void daysSpentInHospitalSort(Patient[] arr) {
       int lastSwap = arr.length-1;
       for(int i=1; i<arr.length; i++) {
         boolean is_sorted = true;
@@ -37,7 +37,7 @@ public class PatientSort {
     }
     
     //does a bubble sort for the department name in desending order
-    public void paitentName(Patient[] arr) {
+    public void departmentNameSort(Patient[] arr) {
       int lastSwap = arr.length-1;
       for(int i=1; i<arr.length; i++) {
         boolean is_sorted = true;
@@ -87,12 +87,12 @@ public class PatientSort {
         ob.printArray(arr);
         
          //apply sort
-        ob.daysSpentInHospital(arr);
+        ob.daysSpentInHospitalSort(arr);
         System.out.println("The Optimised Bubble Sorted array is" );
         ob.printArray(arr);
         
         //applys the sort 
-        ob.departmentName(arr);
+        ob.departmentNameSort(arr);
         System.out.println("The Optimised Bubble Sorted array by department name is:");
         ob.printArray(arr);
     }
