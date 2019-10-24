@@ -36,6 +36,7 @@ public class PatientSort {
       }
     }
     
+    //does a bubble sort for the department name in desending order
     public void paitentName(Patient[] arr) {
       int lastSwap = arr.length-1;
       for(int i=1; i<arr.length; i++) {
@@ -88,6 +89,11 @@ public class PatientSort {
          //apply sort
         ob.daysSpentInHospital(arr);
         System.out.println("The Optimised Bubble Sorted array is" );
+        ob.printArray(arr);
+        
+        //applys the sort 
+        ob.departmentName(arr);
+        System.out.println("The Optimised Bubble Sorted array by department name is:");
         ob.printArray(arr);
     }
     
