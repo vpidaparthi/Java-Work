@@ -47,7 +47,6 @@ public class QuickSort {
                 j--;
                 counter++;
             }
-//            counter++;
 
             // If we have found a value in the left list which is larger than
             // the pivot element and if we have found a value in the right list
@@ -58,8 +57,9 @@ public class QuickSort {
                 exchange(i, j);
                 i++;
                 j--;
-                counter++;
+//                counter++;
             }
+            counter++;
         }
         // Recursion
         if (low < j)
@@ -88,6 +88,62 @@ public class QuickSort {
         System.out.println();
     }
     
+        private void quicksort2(int low, int high) {
+        int i = low, j = high;
+        // Get the pivot element from the middle of the list
+        int pivot = items[low + (high-low)/2].getItemId();
+
+        // Divide into two lists
+        while (i <= j) {
+            // If the current value from the left list is smaller than the pivot
+            // element then get the next element from the left list
+            while (items[i].getItemId() < pivot) {
+                i++;
+            }
+            // If the current value from the right list is larger than the pivot
+            // element then get the next element from the right list
+            while (items[j].getItemId() > pivot) {
+                j--;
+            }
+
+            // If we have found a value in the left list which is larger than
+            // the pivot element and if we have found a value in the right list
+            // which is smaller than the pivot element then we exchange the
+            // values.
+            // As we are done we can increase i and j
+            if (i <= j) {
+                exchange(i, j);
+                i++;
+                j--;
+
+            }
+        }
+        // Recursion
+        if (low < j)
+            quicksort2(low, j);
+        if (i < high)
+            quicksort2(i, high);
+    }
+
+    private void exchange2(int i, int j) {
+        CatalogueItem temp = items[i];
+        items[i] = items[j];
+        items[j] = temp;
+    }
+
+ 
+    /* Prints the array */
+    void printArray2(CatalogueItem arr2[])
+    {
+        int n = arr2.length;
+        for (int i=0; i<n; ++i)
+            System.out.print(
+                    "id: " + arr2[i].getItemId() + " "
+                    + "name: " + arr2[i].getItemName() + " "
+                    + "category: " + arr2[i].getCategory() + "\n");
+        System.out.println();
+        System.out.println();
+    }    
     // Driver method to test above
     public static void main(String args[])
     {
@@ -103,15 +159,32 @@ public class QuickSort {
             new CatalogueItem( 9, "Kemwould hand mixer","Appliances"),
             new CatalogueItem( 1, "Java for Dummies","Books"),
         };
+        
+        CatalogueItem arr2[] = {
+            new CatalogueItem( 9, "Life of Pi","Books"),
+            new CatalogueItem( 7, "Deelongie 4 way toaster","Home and Kitchen"),
+            new CatalogueItem( 6, "Glorbarl knife set","Home and Kitchen"),
+            new CatalogueItem( 5, "Diesorn vacuum cleaner","Appliances"),
+            new CatalogueItem( 4, "Jennie Olivier sauce pan","Home and Kitchen"),
+            new CatalogueItem( 3, "This book will save your life","Books"),
+            new CatalogueItem( 2, "Kemwould hand mixer","Appliances"),
+            new CatalogueItem( 1, "Java for Dummies","Books"),
+        };
         System.out.println("The Unsorted array is");
         ob.printArray(arr);
         
          //apply sort
         ob.sort(arr);
+        System.out.println("Total number of comparisons for first array: " + counter);
         System.out.println("The Quick Sorted array is");
         ob.printArray(arr);
         
-        System.out.println("Total number of comparisons: " + counter);
+        ob.sort(arr2);
+        System.out.println("The Quick Sorted array in Reverse");
+        System.out.println("Total number of comparisons reverse: " + counter);
+        ob.printArray2(arr2);
+        
+        
     }
 }
 
