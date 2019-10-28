@@ -16,6 +16,7 @@ public class QuickSort {
     
     private CatalogueItem[] items;
     private int number;
+    static int counter = 0; 
 
     public void sort(CatalogueItem[] values) {
         // check for empty or null array
@@ -38,12 +39,15 @@ public class QuickSort {
             // element then get the next element from the left list
             while (items[i].getItemId() < pivot) {
                 i++;
+                counter++;
             }
             // If the current value from the right list is larger than the pivot
             // element then get the next element from the right list
             while (items[j].getItemId() > pivot) {
                 j--;
+                counter++;
             }
+//            counter++;
 
             // If we have found a value in the left list which is larger than
             // the pivot element and if we have found a value in the right list
@@ -54,6 +58,7 @@ public class QuickSort {
                 exchange(i, j);
                 i++;
                 j--;
+                counter++;
             }
         }
         // Recursion
@@ -105,6 +110,8 @@ public class QuickSort {
         ob.sort(arr);
         System.out.println("The Quick Sorted array is");
         ob.printArray(arr);
+        
+        System.out.println("Total number of comparisons: " + counter);
     }
 }
 
