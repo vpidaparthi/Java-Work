@@ -124,21 +124,13 @@ public class JavaSort {
             new CatalogueItem( 6, "This book will save your life","Books"),
             new CatalogueItem( 9, "Kemwould hand mixer","Appliances"),
             new CatalogueItem( 1, "Java for Dummies","Books"),
-        };
-        
-        CatalogueItem arr2[] = {
-            new CatalogueItem( 3, "Life of Pi","Books"),
-            new CatalogueItem( 7, "Deelongie 4 way toaster","Home and Kitchen"),
-            new CatalogueItem( 2, "Glorbarl knife set","Home and Kitchen"),
-            new CatalogueItem( 4, "Diesorn vacuum cleaner","Appliances"),
-            new CatalogueItem( 5, "Jennie Olivier sauce pan","Home and Kitchen"),
-            new CatalogueItem( 6, "This book will save your life","Books"),
-            new CatalogueItem( 9, "Kemwould hand mixer","Appliances"),
-            new CatalogueItem( 1, "Java for Dummies","Books"),
-        };
+        };   
         
         Arrays.sort(arr, new Sortbyroll()); 
-        Arrays.sort(arr2, new sortByCategory());
+        ob.printArray(arr);
+        System.out.println("The array sorted by category using Java built in sort is");
+        Arrays.sort(arr, new sortByCategory());
+        ob.printArray(arr);
 //        System.out.println("The Unsorted array is");
 //        ob.printArray(arr);
 //        System.out.println("\nSorted by rollno"); 
@@ -147,8 +139,8 @@ public class JavaSort {
         
          //apply sort
 //        ob.doOptimisedBubbleSort(arr);
-       System.out.println("The array sorted by category using Java built in sort is");
-        ob.printArray(arr);
-        ob.printArray(arr2);
+//       System.out.println("The array sorted by category using Java built in sort is");
+        
+//        ob.printArray(arr2);
     }
 }
