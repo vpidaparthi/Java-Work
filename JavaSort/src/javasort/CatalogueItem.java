@@ -35,5 +35,6 @@ class CatalogueItem {
         itemName = newName;
         category = newCategory;
     }
-    
 }
+    
+
