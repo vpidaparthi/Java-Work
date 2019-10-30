@@ -13,13 +13,13 @@ import java.util.Comparator;
  * @author Peter Seatter
  * @Date 29/10/19
  * @version 1
+ * @Deseciption This program uses a java sort algorithm to sort out the array. 
  */
 public class JavaSort {
 
     
     /* Prints the array */
-    void printArray(CatalogueItem arr[])
-    {
+    void printArray(CatalogueItem arr[]) {
         int n = arr.length;
         for (int i=0; i<n; ++i)
             System.out.print(
@@ -31,29 +31,24 @@ public class JavaSort {
     }
     
     
-    static class Sortbyroll implements Comparator<CatalogueItem> { 
-        // Used for sorting in ascending order of 
-        // roll number 
-        public int compare(CatalogueItem a, CatalogueItem b) 
-        { 
+    static class itemId implements Comparator<CatalogueItem> { 
+        // sorts the Id in ascending order
+        public int compare(CatalogueItem a, CatalogueItem b) { 
             return a.getItemId() - b.getItemId(); 
         } 
     } 
     
     
     static class sortByCategory implements Comparator<CatalogueItem> { 
-        // Used for sorting in ascending order of 
-        // roll number 
-        public int compare(CatalogueItem a, CatalogueItem b) 
-        { 
+        // sorts the category in alphabetical order
+        public int compare(CatalogueItem a, CatalogueItem b) { 
             return a.getCategory().compareTo(b.getCategory()) ; 
         } 
     } 
     
     
     // Driver method to test above
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         JavaSort ob = new JavaSort();
         
         CatalogueItem arr[] = {
@@ -68,11 +63,13 @@ public class JavaSort {
         };   
         
         System.out.println("The array sorted by id using Java built in sort is");
-        Arrays.sort(arr, new Sortbyroll()); 
+        Arrays.sort(arr, new itemId()); 
         ob.printArray(arr);
         
         System.out.println("The array sorted by category using Java built in sort is");
         Arrays.sort(arr, new sortByCategory());
         ob.printArray(arr);
+        
+       
     }
 }
