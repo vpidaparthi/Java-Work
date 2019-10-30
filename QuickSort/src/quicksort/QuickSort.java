@@ -184,6 +184,11 @@ public class QuickSort {
         System.out.println("Total number of comparisons reverse: " + counter);
         ob.printArray2(arr2);
         
-        
+         System.out.println("The difference in the performance between the data used it substantial. "
+                + "The reason for this is cause it using best case data sets are the data is already provided "
+                + "and it just needs to go through each iteration again but making it make to how it was which requires more iterations through the code.\n"
+                + "The result of this is that it's better to have it mixed up and run through a sort than already sorted in such that it has to do everything in reverse. "
+                + "This makes what's been done a second time not worth it for the code since it takes up to much time to run through the number of sorts required to be completed\n"
+                + "by the algorithm.");
     }
 }
